@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# as blog template isn't final
+Blog/static
+Blog/templates
+
 .vscode/
 
 # Distribution / packaging
