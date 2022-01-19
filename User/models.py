@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, name, password, **other_fields):
+    def create_user(self, email, name, password=None, **other_fields):
         if not email:
             raise ValueError(_('You must add email.'))
 
@@ -18,7 +18,7 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self, email, name, password, **other_fields):
+    def create_superuser(self, email, name, password=None, **other_fields):
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault("is_admin", True)
         other_fields.setdefault('is_superuser', True)
@@ -29,7 +29,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('Email address.'), unique=True)
     name = models.CharField(max_length=150, unique=False)
     date_joined = models.DateTimeField(auto_now_add=True)
-    about = models.CharField(max_length=300, blank=True)
+    about = models.CharField(max_length=300, blank=True, null=True)
     profile_img = models.ImageField(upload_to = "users/profiles/",blank=True, null=True)
     
     is_active = models.BooleanField(default=True)

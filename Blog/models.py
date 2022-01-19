@@ -1,18 +1,22 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 # Create your models here.
 class Article(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     category = models.CharField(max_length=50)
-    thumbnail = models.ImageField(upload_to = 'Article/thumbnails/')
+    thumbnail = models.ImageField(upload_to = 'Article/thumbnails/', blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=200, null=False, blank= False)
-    description = models.CharField(max_length=1000, null=False, blank=False)
+    title = models.CharField(max_length=200,  null=False, blank= False)
+    content = models.CharField(max_length=10000, default="", null=False, blank=False)
     likes = models.ManyToManyField(get_user_model(), related_name="post_like")
 
     def __str__(self) -> str:
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("Blog:blog_detail", kwargs={'pk':self.pk})
 
 class ArticleComment(models.Model):
     Article = models.ForeignKey(Article, on_delete=models.CASCADE)
