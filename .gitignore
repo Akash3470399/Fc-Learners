@@ -10,6 +10,8 @@ __pycache__/
 Blog/static
 Blog/templates
 
+**/migrations
+
 .vscode/
 
 # Distribution / packaging
