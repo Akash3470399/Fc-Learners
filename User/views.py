@@ -9,7 +9,8 @@ from .forms import UserRegisterForm, UserLoginForm
 
 
 def register_or_login(request):
-    return render(request, 'User/login_signup.html', {'registerform':UserRegisterForm(), 'loginform':UserLoginForm()})
+    context = {'registerform':UserRegisterForm(), 'loginform':UserLoginForm()}
+    return render(request, 'User/login_signup.html', context)
 
 
 def user_register(request):
@@ -17,8 +18,8 @@ def user_register(request):
         json_data = json.load(request)
         form = UserRegisterForm(data=json_data)
         if form.is_valid():
-            u = form.save()
-            return JsonResponse({'status':'success', 'link':reverse("Blog:blog_home")},)
+            form.save()
+            return JsonResponse({'status':'success'},)
         else:
             return JsonResponse({'status':'fail', 'errors':form.errors})
     return redirect("User:register_or_login")
@@ -31,7 +32,7 @@ def user_login(request):
             user = authenticate(request, email = data['email'], password=data['password'])
             if user is not None:
                 login(request, user)
-                return JsonResponse({'status':'success', 'link':reverse("Blog:blog_home")},)
+                return JsonResponse({'status':'success'},)
             else:
                 return JsonResponse({'status':'fail', 'errors':'not authenticated'})
         else:
