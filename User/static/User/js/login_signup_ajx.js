@@ -20,12 +20,15 @@ sign_up_form.onsubmit = function(e){
         name: formdata.get("name"),
         password1: formdata.get("password1"),
         password2: formdata.get("password2"),
+        is_teacher:formdata.get('is_teacher')
       }),
     })
       .then((res) => res.json())
       .then((data) => {
           if(data['status'] == 'success')
-            window.location.href = data['link'];
+          {
+            location.reload();
+          }
           else{
             console.log(data['errors']);
           }
@@ -52,7 +55,12 @@ login_in_form.onsubmit = function(e){
   .then( res => res.json()
   ).then(data => {
       if(data['status'] == 'success')
-        window.location.href = "/";
+        {
+          if(window.location.search)
+            window.location.href = window.location.search.replace("?next=", "");
+          else
+            window.location.href = "/";
+        }
       else{
         console.log(data)
       }

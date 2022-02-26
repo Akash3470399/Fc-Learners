@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/static/Blog/tinymce/js/tinymce/tinymce.min.js"></script>
+    <!-- 	<script
+			src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"
+			referrerpolicy="origin"
+		></script> 
+	-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'Blog/css/addnewpost.css' %}" />
+
+    <script type="text/javascript">
+      tinymce.init({
+        selector: "#tinymce-textarea", // change this value according to your HTML
+        images_upload_url: "/upload_image/", // Image upload address in Django route
+        height: 300,
+        plugins: [
+          "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+          "table emoticons template help",
+        ],
+        toolbar:
+          "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | " +
+          "bullist numlist outdent indent | link image | print preview media fullscreen | " +
+          "forecolor backcolor emoticons | help",
+        menu: {
+          favs: {
+            title: "My Favorites",
+            items: "code visualaid | searchreplace | emoticons",
+          },
+        },
+        menubar: "favs file edit view insert format tools table help",
+        content_style:
+          "@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');",
+      });
+    </script>
+  </head>
+  <body>
+    <canvas class="background"></canvas>
+
+    {% include 'Blog/header.html' %}
+    <img
+      src="{% static 'Blog/assets/images/BlogHome/3704081.png' %}"
+      alt=""
+      srcset=""
+      id="formimg"
+    />
+    <form
+      action="{% url 'Blog:add_new_post' %}"
+      method="POST"
+      class="form"
+      id="content"
+    >
+      {% csrf_token %}
+      <p class="form-element">
+        <input
+          placeholder="Title"
+          type="text"
+          name="title"
+          maxlength="200"
+          required
+          id="id_title"
+          class="box"
+        />
+      </p>
+
+      <p class="form-element">
+        <input
+          type="text"
+          name="category"
+          maxlength="50"
+          required
+          id="id_category"
+          class="box"
+          placeholder="Category"
+        />
+      </p>
+
+      <p class="form-element">
+        <input
+          type="file"
+          name="thumbnail"
+          accept="image/*"
+          id="id_thumbnail"
+          class="box"
+          placeholder="Thumbnail"
+        />
+      </p>
+
+      <p class="form-element">
+        <textarea
+          name="content"
+          cols="40"
+          rows="10"
+          required=""
+          id="id_content"
+          hidden
+        ></textarea>
+      </p>
+    </form>
+    <textarea id="tinymce-textarea"></textarea>
+
+    <button class="main-blue-button" onclick="submitForm()">Add Post</button>
+
+    <!-- javascript starts -->
+    <!-- cursor style  -->
+    <div id="cursor"></div>
+    <script>
+      var cursor = document.getElementById("cursor");
+      document.onmousemove = function (e) {
+        cursor.style.left = e.pageX + "px";
+        cursor.style.top = e.pageY + "px";
+        cursor.style.display = "block";
+      };
+    </script>
+
+    <!-- dark theme -->
+    <script src="{% static 'Blog/js/themesLogic.js' %}"></script>
+
+    <script>
+
+      // script to submit form 
+      let form = document.querySelector("form");
+      function submitForm(e) {
+        console.log(tinymce.activeEditor.getContent());
+        form.querySelector("#id_content").innerText = tinymce.activeEditor.getContent();
+        form.submit();
+      }
+    </script>
+  </body>
+</html>

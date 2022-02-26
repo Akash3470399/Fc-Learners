@@ -1,4 +1,3 @@
-from logging import PlaceHolder
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -8,7 +7,7 @@ class UserRegisterForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'confirm password', "autocomplete":"new-password"}))
     class Meta:
         model  = get_user_model()
-        fields = ['email', 'name', 'password1', 'password2']
+        fields = ['email', 'name', 'password1', 'password2', 'is_teacher']
 
         widgets = {
             'email':forms.EmailInput(attrs={'placeholder':'email', 'id':'user_email'}),
