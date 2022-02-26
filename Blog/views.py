@@ -30,7 +30,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostDetailView(DetailView):
     model = Article
-    template_name = 'Blog/blog_detail.html'
+    template_name = 'Blog/BlogDetail.html'
     context_object_name = "post"
 
 class PostListView(ListView):
