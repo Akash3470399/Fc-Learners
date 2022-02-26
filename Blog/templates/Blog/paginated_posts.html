@@ -1,0 +1,59 @@
+{% load blog_filters %}       
+       
+       <div class="design-content">
+          {% if posts %} 
+            {% for post in posts %}
+              <!-- item -->
+              <div class="design-item">
+                <a href="{% url 'Blog:blog_detail' post.id %}">
+                  <div class="design-img">
+                    <img src="{{ post.thumbnail.url }}" alt="" />
+
+                    <span><i class="far fa-heart"></i> {{ post|get_likes }} </span>
+                    <span>{{ post.category }}</span>
+                  </div>
+                </a>
+                <div class="design-title">
+                  <a href="{% url 'Blog:blog_detail' post.id %}"
+                    >{{ post.title }}</a
+                  >
+                </div>
+              </div>
+              <!-- end of item -->
+            {% endfor %} 
+          {% endif %}
+        </div>
+
+    <nav>
+      <ul class="pagination justify-content-center mb-5">
+        {% if page_obj.has_previous %}
+        <li class="page-item" title="Previous">
+          <a
+            class="page-link rounded-circle m-1"
+            href="?page={{ page_obj.previous_page_number}}"
+          >
+            <i class="fas fa-chevron-left text-primary"></i
+          ></a>
+        </li>
+        {% endif %} 
+
+        {% for i in page_obj.paginator.page_range %} 
+        <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+          <a class="page-link rounded-circle m-1" href="?page={{ i }}"
+            >{{ i }}</a
+          >
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item" title="Next">
+          <a
+            class="page-link rounded-circle m-1"
+            href="?page={{ page_obj.next_page_number }}"
+          >
+            <i class="fas fa-chevron-right text-primary"></i
+          ></a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
