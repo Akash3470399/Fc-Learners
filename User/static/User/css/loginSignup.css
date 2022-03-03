@@ -400,7 +400,7 @@ form.sign-in-form {
   }
 
   .parent-container.sign-up-mode .signin-signup {
-    top: 5%;
+    top: 1%;
     transform: translate(-50%, 0);
   }
 }
@@ -429,4 +429,9 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
+}
+
+
+.validation-box{
+  color: #fe3f40;
 }

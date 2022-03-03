@@ -24,7 +24,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm #to change user instance
     add_form = UserRegisterForm # to add a user
 
-    list_display = ('email', 'name', 'is_admin', 'about')
+    list_display = ('email', 'name', 'is_admin', 'about', 'is_teacher')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {

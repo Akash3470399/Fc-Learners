@@ -1,4 +1,6 @@
+import email
 import json
+from re import L
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import JsonResponse
@@ -16,6 +18,9 @@ def register_or_login(request):
 def user_register(request):
     if request.method == 'POST':
         json_data = json.load(request)
+        if(json_data['email'].endswith("fc.com")):
+            json_data['is_teacher'] = True
+            
         form = UserRegisterForm(data=json_data)
         if form.is_valid():
             form.save()
@@ -34,6 +39,12 @@ def user_login(request):
                 login(request, user)
                 return JsonResponse({'status':'success'},)
             else:
-                return JsonResponse({'status':'fail', 'errors':'not authenticated'})
+                err = ""
+                user = CustomUser.objects.filter(email=data['email'])
+                if not user.exists():
+                    err = {'email' :"User not found."}
+                else:
+                    err = {'password' :"Invalid password."}
+                return JsonResponse({'status':'fail', 'errors':err})
         else:
             return JsonResponse({'status':'fail', 'errors':form.errors})
