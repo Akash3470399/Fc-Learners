@@ -1,0 +1,34 @@
+<!--content yet to be added take from  studylisting.html-->
+<nav>
+    <ul class="pagination justify-content-center mb-5">
+      {% if page_obj.has_previous %}
+      <li class="page-item" title="Previous">
+        <a
+          class="page-link rounded-circle m-1"
+          href="?page={{ page_obj.previous_page_number}}"
+        >
+          <i class="fas fa-chevron-left text-primary"></i
+        ></a>
+      </li>
+      {% endif %} 
+
+      {% for i in page_obj.paginator.page_range %} 
+      <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+        <a class="page-link rounded-circle m-1" href="?page={{ i }}"
+          >{{ i }}</a
+        >
+      </li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li class="page-item" title="Next">
+        <a
+          class="page-link rounded-circle m-1"
+          href="?page={{ page_obj.next_page_number }}"
+        >
+          <i class="fas fa-chevron-right text-primary"></i
+        ></a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>

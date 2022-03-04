@@ -1,0 +1,462 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>File Listing Page</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'User/css/dashboard.css' %}">
+</head>
+<body>
+  
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span  class="las la-graduation-cap"></span><span>FC learners</span></h2>
+        </div>
+
+        <!--Section side bar -->
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="" ><span class="las la-home"></span>
+                    <span>Home</span></a>
+                </li>
+                <li>
+                    <a href="" class="active"><span class="las la-file"></span>
+                    <span>Study Material</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="las la-newspaper"></span>
+                    <span>Blog</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="lar la-question-circle"></span>
+                    <span>Q&A Forum</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="las la-info-circle"></span>
+                    <span>About Us</span></a>
+                </li>
+                <li>
+                    <a id="darkmode">
+                        <span>
+                            <i class="las la-adjust" id="modeicon"></i>
+                            <!-- <img
+                            src="moon.png"
+                            alt=""
+                            srcset=""
+                            id="modeicon"
+                            /> -->
+                        </span>
+                        <span>Mode</span></a>
+                        <!-- <a id="darkmode"><span class="las la-sun" id="modeicon"></span> -->
+                        </a>
+                </li>
+                <li>
+                    <a href="{% url 'StudyMaterial:logout' %}"><span class="las la-user"></span>
+                    <span>Logout</span></a>
+                </li>
+            </ul>
+        </div> 
+    </div> 
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label> Dashboard
+            </h2>
+
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="Search Here" />
+            </div>
+         
+            <div class="user-wrapper">
+                <img src="{% static 'User/images/student_dash/Avatar.png' %}" width="40px" height="40px" alt="">
+                <div>
+                    <h4>{{user}}</h4>
+                    <small>Student</small>
+                </div>
+            </div>
+        </header>
+     
+        <main>
+            <div class="cards"> 
+
+                <div class="card-single">
+                    <div>
+                        <h1>9</h1>
+                        <span>Blogs Uploaded
+                    
+                        </span>
+                    </div>
+                    <div>
+                        <span class="las la-copy"></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h1>10</h1>
+                        <span>Study Material Uploaded </span>
+                    </div>
+                    <div>
+                        <span  class="las la-file-upload"></span>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div>
+                        <h1>21</h1>
+                        <span>Study Material Accepted </span>   
+                    </div>
+                    <div>
+                        <span class="las la-check-circle"></span>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div>
+                        <h1>3</h1>
+                    <a href="#">
+
+                        <span>Study Material Pending</span>
+                    </a>
+                    </div>
+                    <div>
+                        <span class="lar la-pause-circle"></span>
+                    </div>
+                </div>
+            </div> 
+            <!--Table for file upload-->
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>File Upload Table</h3>
+                            
+                            <button>More here <span class="las la-arrow-down">
+                            </span></button>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                    
+                                    
+                                        <tr>
+                                            <td>Title</td>
+                                            <td>Category</td>
+                                            <td>Status</td>
+                                            <td>Delete File</td>
+                                            <td>Update File</td>
+                                            
+                                            
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Power of thinking big and power of wizard</td>
+                                            <td>Ui Ux Designing </td>
+                                            <td> <span class="status green"></span>Uploaded </td> 
+                                            <td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                                                                    
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big</td>
+                                            <td>Ui Ux Designing </td>
+                                            <td>
+                                                <span class="status yellow"></span>Pending </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>                                <td>The Monk who sold his ferrari and magic of thinking big</td>
+                                            <td>Ui Ux Designing </td>
+                                            <td>
+                                                <span class="status red"></span>Rejected
+                                            </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big  </td>
+                                              <td>Ui Ux  Designing</td>
+                                       
+                                            <td>
+                                                <span class="status yellow"></span>Pending 
+                                            </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Ui Ux Designing </td>
+                                            <td>
+                                                <span class="status red"></span>  Rejected                                           </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big                                    </td> <td>Ui Ux Designing</td>
+                                            <td>
+                                                <span class="status yellow"></span> Pending                                            </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Ui Ux Designing </td>
+                                            <td>
+                                                <span class="status green"></span>  Accepted                                           </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big </td><td>Ui Ux Designing</td>
+                                            <td>
+                                             <span class="status green"></span> Accepted                                            </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Ui Ux Designing </td>
+                                            <td>
+                                                <span class="status red"></span> Rejected                                            </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Ui Ux Designing </td>
+                                            <td>
+                                                <span class="status green"></span> Accepted                                            </td><td> <span  class="las la-trash"></span> </td> 
+                                            <td> <span  class="las la-edit"></span> </td> 
+                                              
+                                        </tr>
+                                   
+
+                                    </tbody>
+                                </table>
+                                
+                                <br>
+                                <hr color="grey">
+            <!--Table for file upload-->
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Blog Table</h3>
+
+                            <button>More here <span class="las la-arrow-down">
+                            </span></button>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Title</td>
+                                            <td>Category</td>
+                                            <td>No. Of  Likes</td>
+                                            <td>Comments</td>
+                                            
+                                            
+                                            
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Power of thinking big and power of wizard</td>
+                                            
+                                            <td> Designing</td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                                                                    
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big of Anuja</td>
+                                            <td>Designing</td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>                               
+                                             <td>The Monk who sold his ferrari and magic of thinking big</td>
+                                          
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big  </td> 
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big  </td>
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Magic Of Thinking Big </td>
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                        <tr>
+                                            <td>The Monk who sold his ferrari </td>
+                                            <td>Designing </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span  class="las la-thumbs-up"></span >
+                                                </td> 
+                                            <td>
+                                                <p id="likes">9</p>&nbsp;&nbsp;
+                                                <span   class="las la-comments"></span >
+                                                </td> 
+                                              
+                                        </tr>
+                                   
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            
+        </main>
+
+    </div>
+
+<script>
+
+    base_url = document.location.protocol + "//" + document.location.host;
+var modeicon = document.getElementById("modeicon");
+
+
+if(localStorage.getItem("theme") == null) // if theme value is not there in localStorages then save it fist
+    localStorage.setItem("theme", "lightMode");
+else if (localStorage.getItem('theme') == "darkMode") // if theme value is dark mode then toggle value of dark mode variable.
+  {
+     // modeicon.src = base_url + "img/sun.png";
+      document.body.classList.toggle("dark-theme");
+    }  
+    
+    modeicon.onclick = function () {
+        document.body.classList.toggle("dark-theme");
+        if (document.body.classList.contains("dark-theme")) {
+             localStorage.setItem("theme", "darkMode");;
+            // modeicon.src ="sun.png";
+            modeicon.src ="las la-adjust";
+        } else {
+              localStorage.setItem("theme", "lightMode");
+            // modeicon.src ="moon.png";
+            modeicon.src ="las la-adjust";
+        }
+    };
+    
+    </script>
+</body>
+
+</html>
