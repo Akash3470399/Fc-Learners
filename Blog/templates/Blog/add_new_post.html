@@ -107,10 +107,10 @@
           hidden
         ></textarea>
       </p>
+        <textarea id="tinymce-textarea"></textarea>
+      <button class="submit-btn" onclick="submitForm()">Add Post</button>
     </form>
-    <textarea id="tinymce-textarea"></textarea>
 
-    <button class="main-blue-button" onclick="submitForm()">Add Post</button>
 
     <!-- javascript starts -->
     <!-- cursor style  -->
@@ -129,6 +129,8 @@
 
     <script>
 
+      let submitBtn =document.querySelector("form > button.submit-btn");
+      console.log(submitBtn)
       // script to submit form 
       let form = document.querySelector("form");
       function submitForm(e) {

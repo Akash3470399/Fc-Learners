@@ -30,7 +30,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 85%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -68,6 +68,7 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 1;
+	height: 10px;
 	/* background-color: #eeff00; */
 }
 
@@ -535,7 +536,7 @@ h1 span{
 	background-size: 20% 60%;
 	background-repeat: no-repeat;
 	background-position: 1111px 15px;
-	padding: 0 150px;
+	padding: 0 50px;
 }
 .form .background-image {
 	width: 100%;
@@ -585,3 +586,20 @@ h1 span{
 	border: none;
 }
 
+form > button.submit-btn{
+	margin-top: 5%;
+	position: relative;
+	left: 46%;
+	font-size: 23px;
+	font-weight: 400;
+	color: #f7f7f7;
+	text-transform: capitalize;
+	border-radius: 36px;
+	letter-spacing: 0.25px;
+	background-color: #03a4ed;
+	padding: 10px;
+	padding-left:15px; 
+	padding-right:15px; 
+	border: none;
+	cursor: pointer;
+}
