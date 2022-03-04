@@ -1,0 +1,22 @@
+{% if comments %}
+    {% for comment in comments %}
+        <li class="media">
+            <div class="comment">
+                <div class="author-img">
+                    <img src="https://randomuser.me/api/portraits/women/87.jpg"
+                        class="rounded-circle s-sm-2 " alt="" />
+                </div>
+                <h5 class="media-heading">{{ comment.user }}</h5>
+                <div class="media-body">
+                    <p>
+                        {{ comment.comment_text}}
+                    </p>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+
+    {% if has_next_page %}
+        <a onclick="getComments(this)" class="follow-btn mt-3" data-next-page={{ next_page_no }} data-post-no={{ post.id }}>More Comments</a>
+    {% endif %}
+{% endif %}
