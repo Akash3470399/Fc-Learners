@@ -6,6 +6,8 @@ from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
 
+
+
 from .models import CustomUser
 from .forms import UserRegisterForm, UserLoginForm
 
@@ -48,3 +50,17 @@ def user_login(request):
                 return JsonResponse({'status':'fail', 'errors':err})
         else:
             return JsonResponse({'status':'fail', 'errors':form.errors})
+
+def student_dash(request):
+    if not request.user.is_authenticated:
+        return redirect('User:register_or_login')
+    user=CustomUser.objects.get(id=request.user.id)
+    d={'user':user}
+    return render(request, 'User/student_dash.html',d)
+
+def teacher_dash(request):
+    if not request.user.is_authenticated:
+        return redirect('User:register_or_login')
+    user=CustomUser.objects.get(id=request.user.id)
+    d={'user':user}
+    return render(request, 'User/teacher_dash.html',d)
