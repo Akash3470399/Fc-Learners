@@ -1,4 +1,5 @@
-import datetime 
+import datetime
+from email.mime import image 
 from sqlite3 import Timestamp
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -50,3 +51,6 @@ class ArticleComment(models.Model):
 
     def __str__(self):
         return self.comment_text
+
+class TinyEditorImages(models.Model):
+    image = models.ImageField(upload_to = "tinyEditor/images/")
