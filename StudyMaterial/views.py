@@ -31,31 +31,6 @@ def study_material_listing(request):
         print(e)
 
 @login_required
-def add_study(request):
-    if not request.user.is_authenticated:
-        return redirect('User:register_or_login')
-    error=""
-    if request.method=='POST':
-        t=request.POST['title']
-        s=request.POST['subject']
-        n=request.FILES['notesfile']
-        d=request.POST['description']
-        u=CustomUser.objects.filter(name=request.user.name).first()
-        try:
-            if request.user.is_teacher:
-                Resource.objects.create(user=u,file=n,title=t,subject=s,description=d,timestamp=date.today(),status='Accept')
-                error="no"
-                print(t,s,n,d,u)
-            else:
-                Resource.objects.create(user=u,file=n,title=t,subject=s,description=d,timestamp=date.today(),status='Pending')
-                error="no"
-                print(t,s,n,d,u)
-        except:
-            error="yes"
-            print(t,s,n,d,u)    
-    d={'error':error}
-    return render(request,'StudyMaterial/addstudy.html',d)
-
 def add_study_material(request):
     form = ResourceForm()
     if request.method == "POST":
