@@ -1,5 +1,4 @@
 from pickle import FALSE
-from sqlite3 import Timestamp
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,9 +7,15 @@ from django.core.paginator import Paginator
 from django.template.loader import render_to_string
 import json
 
+from PIL import Image
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+import time
+
 from Blog.models import Article, ArticleComment
 
-from .forms import ArticleForm
+from .forms import ArticleForm, TinyEditorImagesForm
+
 # Create your views here.
 def index(request):
     letest_posts = Article.objects.order_by('-timestamp')[:4]
@@ -123,3 +128,36 @@ def get_comments(request, article_no):
     except Exception as e:
         return JsonResponse({'status':'fail'})
     
+
+@csrf_exempt
+def upload_image(request):
+    if request.method == "POST":
+        print(request.POST)
+        print(request.FILES)
+        form = TinyEditorImagesForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.save()
+            return JsonResponse({'status':'success'})
+    print(request)
+    print(request.method) 
+    return JsonResponse({'status':'fail'})   
+# @csrf_exempt
+# def upload_image(request):
+#     file = request.FILES['file']
+#     data = {
+#         'error':True,
+#         'path':'',
+#     }
+#     if file:
+#         timenow = int(time.time()*1000)
+#         timenow = str(timenow)
+#         try:
+#             img = Image.open(file)
+#             img.save(settings.MEDIA_ROOT + "/tinyEditor/images/" + timenow + str(file))
+#         except Exception as e:
+#             print(e)
+#             return HttpResponse(json.dumps(data), content_type="application/json")
+#         imgUrl = settings.MEDIA_ROOT + "/tinyEditor/images/" + timenow + str(file)
+#         data['error'] = False
+#         data['path'] = imgUrl
+#     return HttpResponse(json.dumps(data), content_type="application/json")
