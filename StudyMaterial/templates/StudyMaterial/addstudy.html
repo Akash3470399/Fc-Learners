@@ -1,0 +1,61 @@
+{% load static %}
+
+{% if error == "no" %}
+<script>
+	alert('Notes Uploaded Successfully');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+	alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Study Material</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'StudyMaterial/css/studystyle.css' %}">
+    <link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+		/>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"> -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+
+	
+</head>
+<body>
+	<div class="container">
+		<div class="contact-box">
+			<div class="left"></div>
+			<div class="right">
+				<h2>Upload Study Material </h2>
+                <a href="{% url 'StudyMaterial:study_home' %}">
+                    <ion-icon name="close-circle" id="close"></ion-icon>
+                </a>
+                
+                <!-- <img src="./close-circle.svg" alt="image not loaded" srcset="" id="close"> -->
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+				<input type="text" class="field" placeholder=" Title" name="title" required>
+				<input type="text" class="field" placeholder="Subject" name="subject" required>
+				<input type="file" id="files" class="field" name="notesfile" required />
+				<textarea placeholder="Description" class="field" name="description" required></textarea>
+			<!--<button class="btn" type="submit" >Upload</button>-->	
+					<input type="submit" class="btn" value="Upload">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
