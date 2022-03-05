@@ -100,7 +100,7 @@
           </blockquote>
         </div> -->
 
-			<div class="card text-center">
+		<!--<div class="card text-center">
 				<div class="card-body">
 					<h5 class="card-title">Card title</h5>
 					<p class="card-text">
@@ -198,7 +198,7 @@
 						<small class="text-muted">Last updated 3 mins ago</small>
 					</p>
 				</div>
-			</div>
+			</div>-->
 
 			<!-- <div class="card p-3 text-right">
           <blockquote class="blockquote mb-0">
@@ -217,9 +217,10 @@
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
         </div> -->
+		
+		{% include 'StudyMaterial/paginated_notes.html' %}
 		</div>
 
-		{% include 'StudyMaterial/paginated_notes.html' %}
 		<!-- pagination  
 		<nav>
 			<ul class="pagination justify-content-center mb-5">
@@ -402,5 +403,6 @@
 				}
 			};
 		</script>-->
+		<script src="{% static 'StudyMaterial/js/paginatenotes.js' %}"></script>
 	</body>
 </html>
