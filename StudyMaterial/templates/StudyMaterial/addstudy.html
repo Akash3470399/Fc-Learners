@@ -2,12 +2,14 @@
 
 {% if error == "no" %}
 <script>
+	//getElementById('success_modal').click();
 	alert('Notes Uploaded Successfully');
 </script>
 {% endif %}
 
 {% if error == "yes" %}
 <script>
+	//getElementById('error_modal').click();
 	alert('Something went wrong, Try Again');
 </script>
 {% endif %}
@@ -35,6 +37,8 @@
 	
 </head>
 <body>
+	<!--{% include 'StudyMaterial/succ_modal.html' %}
+	{% include 'StudyMaterial/err_modal.html' %}-->
 	<div class="container">
 		<div class="contact-box">
 			<div class="left"></div>
