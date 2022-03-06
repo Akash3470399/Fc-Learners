@@ -11,7 +11,9 @@ from .forms import ResourceForm
 # Create your views here.
  
 def index(request):
-    return render(request, 'StudyMaterial/Studyhome.html')
+    latest_notes = Resource.objects.order_by('-timestamp')[:6]
+    context = {'latest_notes':latest_notes}
+    return render(request, 'StudyMaterial/Studyhome.html',context)
 
 
 
@@ -43,7 +45,6 @@ def add_study_material(request):
         else:
             return render('StudyMaterial/addstudy.html', {'form': form})
     return render(request,'StudyMaterial/addstudy.html', {'form': form})
-
 
 
 # search notes
