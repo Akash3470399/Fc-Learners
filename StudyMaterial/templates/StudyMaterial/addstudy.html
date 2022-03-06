@@ -1,20 +1,5 @@
 {% load static %}
 
-{% if error == "no" %}
-<script>
-	//getElementById('success_modal').click();
-	alert('Notes Uploaded Successfully');
-</script>
-{% endif %}
-
-{% if error == "yes" %}
-<script>
-	//getElementById('error_modal').click();
-	alert('Something went wrong, Try Again');
-</script>
-{% endif %}
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +22,6 @@
 	
 </head>
 <body>
-	<!--{% include 'StudyMaterial/succ_modal.html' %}
-	{% include 'StudyMaterial/err_modal.html' %}-->
 	<div class="container">
 		<div class="contact-box">
 			<div class="left"></div>
@@ -48,7 +31,6 @@
                     <ion-icon name="close-circle" id="close"></ion-icon>
                 </a>
                 
-                <!-- <img src="./close-circle.svg" alt="image not loaded" srcset="" id="close"> -->
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 				<input type="text" class="field" placeholder=" Title" id="id_title" name="title" required>
