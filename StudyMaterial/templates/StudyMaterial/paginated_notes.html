@@ -1,51 +1,54 @@
 <!--content yet to be added take from  studylisting.html-->
 
 {% if notes %} 
-{% for note in notes %}
-<div class="card text-center">
-  <div class="card-body">
-    <h5 class="card-title"><a href="{{note.file.url}}">{{ note.title }}</h5>
-    <p class="card-text">
-      {{note.description}}
-    </p>
-    <p class="card-text">
-      <small class="text-muted">Added on {{ note.timestamp }} </small>
-    </p>
-  </div>
-</div>
-{% endfor %} 
+  {% for note in notes %}
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title"><a target="_blank" href="{{note.file.url}}">{{ note.title }}</a></h5>
+        <p class="card-text">
+          {{note.description}}
+        </p>
+        <p class="card-text">
+          <small class="text-muted">Added on {{ note.timestamp }} </small>
+        </p>
+      </div>
+    </div>
+    {% if forloop.counter|divisibleby:"3" %} <br> {% endif %}
+    {% endfor %} 
 {% endif %}
 
-<nav>
-    <ul class="pagination justify-content-center mb-5">
-      {% if page_obj.has_previous %}
-      <li class="page-item" title="Previous">
-        <a
-          class="page-link rounded-circle m-1"
-          href="?page={{ page_obj.previous_page_number}}"
-        >
-          <i class="fas fa-chevron-left text-primary"></i
-        ></a>
-      </li>
-      {% endif %} 
 
-      {% for i in page_obj.paginator.page_range %} 
-      <li class="page-item {% if page_obj.number == i %}active{% endif %}">
-        <a class="page-link rounded-circle m-1" href="?page={{ i }}"
-          >{{ i }}</a
-        >
-      </li>
-      {% endfor %}
+{% if is_paginated %}
+  <nav>
+      <ul class="pagination justify-content-center mb-5">
+        {% if page_obj.has_previous %}
+        <li class="page-item" title="Previous">
+          <a
+            class="page-link rounded-circle m-1"
+            href="?page={{ page_obj.previous_page_number }}"
+          >
+            <i class="fas fa-chevron-left text-primary"></i
+          ></a>
+        </li>
+        {% endif %} 
 
-      {% if page_obj.has_next %}
-      <li class="page-item" title="Next">
-        <a
-          class="page-link rounded-circle m-1"
-          href="?page={{ page_obj.next_page_number }}"
-        >
-          <i class="fas fa-chevron-right text-primary"></i
-        ></a>
-      </li>
-      {% endif %}
-    </ul>
+        {% for i in page_obj.paginator.page_range %} 
+        <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+          <a class="page-link rounded-circle m-1" href="?page={{ i }}"
+            >{{ i }}</a
+          >
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item" title="Next">
+          <a
+            class="page-link rounded-circle m-1"
+            href="?page={{ page_obj.next_page_number }}"
+          >
+            <i class="fas fa-chevron-right text-primary"></i></a>
+        </li>
+        {% endif %}
+      </ul>
   </nav>
+{% endif %}

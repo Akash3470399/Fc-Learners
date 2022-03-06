@@ -1,10 +1,8 @@
-import email
 import json
-from re import L
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import JsonResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 
@@ -50,6 +48,11 @@ def user_login(request):
                 return JsonResponse({'status':'fail', 'errors':err})
         else:
             return JsonResponse({'status':'fail', 'errors':form.errors})
+
+def logout_user(request):
+    logout(request)
+    return redirect('Blog:blog_home')
+
 
 def student_dash(request):
     if not request.user.is_authenticated:

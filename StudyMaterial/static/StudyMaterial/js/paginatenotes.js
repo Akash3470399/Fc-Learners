@@ -1,25 +1,28 @@
-let page_btns = document.querySelectorAll("a.page-link");
-let posts_div = document.querySelector("div#posts");
-let base_url = (window.location.protocol + "//" + window.location.host);
+let notes_list = document.querySelector("#notes-list");
+let pages = document.querySelectorAll("a.page-link");
+let base_url = window.location.protocol + "//" + window.location.host;
 
-Array.from(page_btns).forEach(btn => 
-    btn.addEventListener('click', getPage)
-);
+if (pages) {
+  Array.from(pages).forEach((link) => {
+    link.addEventListener("click", get_page);
+  });
+}
 
-function getPage(e){
-    e.preventDefault();
-
-    let url = base_url + "/paginated_notes" + this.getAttribute("href");
-    
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-        posts_div.innerHTML = data['res'];
-
-        page_btns = posts_div.querySelectorAll("a.page-link");
-        Array.from(page_btns).forEach((btn) =>
-        btn.addEventListener("click", getPage)
-        );
+function get_page(e) {
+  e.preventDefault();
+  let page_no = e.target.getAttribute("href");
+  fetch(base_url + "/study-material/study-material-listing/" + page_no)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data["status"] == "success") {
+        notes_list.innerHTML = data["data"];
+        let pages = notes_list.querySelectorAll("a.page-link");
+        if (pages) {
+          console.log(pages);
+          Array.from(pages).forEach((link) => {
+            link.addEventListener("click", get_page);
+          });
+        }
+      }
     });
-    
 }
