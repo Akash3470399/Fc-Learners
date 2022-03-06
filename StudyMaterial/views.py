@@ -14,7 +14,9 @@ from User.models import CustomUser
 # Create your views here.
  
 def index(request):
-    return render(request, 'StudyMaterial/Studyhome.html')
+    latest_notes = Resource.objects.order_by('-timestamp')[:6]
+    context = {'latest_notes':latest_notes}
+    return render(request, 'StudyMaterial/Studyhome.html',context)
 
 
 def Logout(request):
@@ -45,13 +47,14 @@ def add_study(request):
             else:
                 Resource.objects.create(user=u,file=n,title=t,subject=s,description=d,timestamp=date.today(),status='Pending')
                 error="no"
-                print(t,s,n,d,u)
+                #print(t,s,n,d,u)
         except:
             error="yes"
-            print(t,s,n,d,u)    
+            #print(t,s,n,d,u)    
     d={'error':error}
     return render(request,'StudyMaterial/addstudy.html',d)
 
+#ajax functions
 def get_paginated_material(request):
     notes = Resource.objects.filter(status='Accept')
     paginator = Paginator(notes, 1)
