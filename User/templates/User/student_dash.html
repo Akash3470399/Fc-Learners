@@ -27,11 +27,11 @@
                     <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="{% url 'StudyMaterial:study_home' %}" class="active"><span class="las la-file"></span>
+                    <a href="" class="active"><span class="las la-file"></span>
                     <span>Study Material</span></a>
                 </li>
                 <li>
-                    <a href="{% url 'Blog:blog_home' %}"><span class="las la-newspaper"></span>
+                    <a href=""><span class="las la-newspaper"></span>
                     <span>Blog</span></a>
                 </li>
                 <li>
@@ -46,12 +46,19 @@
                     <a id="darkmode">
                         <span>
                             <i class="las la-adjust" id="modeicon"></i>
+                            <!-- <img
+                            src="moon.png"
+                            alt=""
+                            srcset=""
+                            id="modeicon"
+                            /> -->
                         </span>
                         <span>Mode</span></a>
+                        <!-- <a id="darkmode"><span class="las la-sun" id="modeicon"></span> -->
                         </a>
                 </li>
                 <li>
-                    <a href="{% url 'User:logout' %}"><span class="las la-user"></span>
+                    <a href="{% url 'StudyMaterial:logout' %}"><span class="las la-user"></span>
                     <span>Logout</span></a>
                 </li>
             </ul>

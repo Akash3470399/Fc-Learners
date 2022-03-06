@@ -45,10 +45,7 @@ html {
 
 section,
 footer {
-  padding-left:  5rem;
-  padding-right:  5rem;
-  padding-top:  6rem;
-  padding-bottom:0rem;
+  padding: 9rem 5rem;
 }
 .row {
   display: flex;

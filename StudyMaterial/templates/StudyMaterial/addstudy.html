@@ -47,10 +47,11 @@
                 <!-- <img src="./close-circle.svg" alt="image not loaded" srcset="" id="close"> -->
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
-				<input type="text" class="field" placeholder=" Title" id="id_title" name="title" required>
-				<input type="text" class="field" placeholder="Subject" id="id_subject" name="subject" required>
-				<input type="file" id="id_files" class="field" name="file" required />
-				<textarea placeholder="Description" class="field" id="id_description" name="description" required></textarea>
+				<input type="text" class="field" placeholder=" Title" name="title" required>
+				<input type="text" class="field" placeholder="Subject" name="subject" required>
+				<input type="file" id="files" class="field" name="notesfile" required />
+				<textarea placeholder="Description" class="field" name="description" required></textarea>
+			<!--<button class="btn" type="submit" >Upload</button>-->	
 					<input type="submit" class="btn" value="Upload">
 				</form>
 			</div>

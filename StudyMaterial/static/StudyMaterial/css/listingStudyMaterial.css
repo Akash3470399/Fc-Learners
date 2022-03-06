@@ -554,6 +554,7 @@ img {
 	width: 100%;
 	border-radius: 5px;
 	position: relative;
+	box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
 }
 
 .search-input input {
@@ -573,7 +574,7 @@ img {
 
 .search-input .autocom-box {
 	padding: 0;
-	opacity: 1;
+	opacity: 0;
 	pointer-events: none;
 	max-height: 280px;
 	overflow-y: auto;
@@ -616,17 +617,19 @@ img {
 }
 
 .card {
-	width:29%;
-	margin-left: 0.5%;
-	margin-right: 0.5%;
-	margin-top: 10px;
+	/* width:180px; */
 	/* height:auto; */
 	background: var(--primary-color);
 	padding: 3px 3px 3px 3px;
 	box-sizing: border-box;
 	/* text-align:center; */
-	border-radius: 25px;
-	display: inline-block;
+	border-radius: 50px;
+	/* position:absolute; */
+	/* border:3px solid #fe3f40; */
+	/* left:50%; */
+	/* top:50%; */
+	/* transform:translate(-50%,-50%); */
+	/* overflow:hidden; */
 }
 .card-body {
 	flex: 1 1 auto;
@@ -635,8 +638,8 @@ img {
 	width: auto;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 	box-sizing: border-box;
-	margin: 6px;
-	border-radius: 25px;
+	margin: 12px;
+	border-radius: 23px;
 }
 
 .card div h1 {
@@ -701,4 +704,3 @@ h1 {
 	font-size: 9px;
 	color: var(--secondary-color);
 }
-

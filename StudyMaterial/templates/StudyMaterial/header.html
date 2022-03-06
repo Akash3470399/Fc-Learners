@@ -15,10 +15,10 @@
                             <a href="{% url 'Blog:blog_home' %}">Home</a>
                         </li>
                         <li class="scroll-to-section">
-                            <a href="{% url 'StudyMaterial:study_home' %}" class="active">Study Material</a>
+                            <a href="{% url 'StudyMaterial:study_home' %}">Study Material</a>
                         </li>
                         <li class="scroll-to-section">
-                            <a href="{% url 'Blog:blog_home' %}">Blog</a>
+                            <a href="{% url 'Blog:blog_home' %}" class="active">Blog</a>
                         </li>
                         <li class="scroll-to-section">
                             <a href="#portfolio">Q&A Forum</a>
@@ -33,7 +33,9 @@
                         <li class="scroll-to-section">
                             <div class="main-blue-button">
                                 {% if not request.user.is_authenticated %}
-                                <a href="{% url 'User:register_or_login' %}">Login</a>
+                                <a href="{% url 'User:register_or_login' %}"
+                                    >Login/Sign up</a
+                                >
                                 {% else %}
                                     {% if request.user.is_teacher %}
                                         <a href="{% url 'User:teacher_dash' %}">{{ request.user.name }}</a>
