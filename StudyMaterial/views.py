@@ -11,7 +11,7 @@ from .forms import ResourceForm
 # Create your views here.
  
 def index(request):
-    latest_notes = Resource.objects.order_by('-timestamp')[:6]
+    latest_notes = Resource.objects.order_by('-timestamp')
     context = {'latest_notes':latest_notes}
     return render(request, 'StudyMaterial/Studyhome.html',context)
 
@@ -41,7 +41,7 @@ def add_study_material(request):
             newResouce = form.save(commit=False)
             newResouce.user = request.user
             newResouce.save()
-            return redirect("StudyMaterial:study_material_listing")
+            return redirect("StudyMaterial:study_home")
         else:
             return render('StudyMaterial/addstudy.html', {'form': form})
     return render(request,'StudyMaterial/addstudy.html', {'form': form})
@@ -54,7 +54,8 @@ def search_notes(request):
     if notes.count() > 9:
         notes = notes[:9]
     if notes:
+        notes_list = [[note.title, note.file.url] for note in notes]
         res = render_to_string("StudyMaterial/paginated_notes.html", {"notes":notes, "is_paginated":False})
-        return JsonResponse({"status":"success", "data":res})
+        return JsonResponse({"status":"success", "data":res, "notes_list":notes_list})
     else:
         return JsonResponse({"status":"fail"})
