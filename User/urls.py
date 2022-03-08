@@ -12,4 +12,7 @@ urlpatterns = [
     path('logout',views.logout_user,name='logout'),
     path('student_dash/', views.student_dash, name="student_dash"),
     path('teacher_dash/', views.teacher_dash, name="teacher_dash"),
+    path('dash-blogs-paginated/', views.paginated_blog_list, name="dash_blogs_paginated"),
+    path('dash-notes-paginated/', views.paginated_notes_list, name="dash_notes_paginated"),
+
 ]
