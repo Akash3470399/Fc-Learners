@@ -152,13 +152,13 @@
 				</div>
 				<div class="row">
 					{% for note in latest_notes|slice:"3:" %}
-					<div class="column">
+					<div class="column my-4">
 						<h3>{{ note.subject }}</h3>
 						<p>
 							{{ note.description }}
 						</p>
 						<div class="courses-btn">
-							<a class="btn secondary-btn">Download</a>
+							<a href="{{ note.file.url }}" target= "_blank" class="btn secondary-btn">Download</a>
 						</div>
 					</div>
 					{% endfor %}

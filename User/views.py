@@ -105,7 +105,6 @@ def paginated_blog_list(request):
         res = {'status':"success" ,"blogs_list":blogs_list , "next_page_num":next_page_num}
         return JsonResponse(res)
     except Exception as e:
-        print(e)
         return JsonResponse({"status":"fail"})
 
 # function to get paginated study material details

@@ -15,8 +15,6 @@ def index(request):
     context = {'latest_notes':latest_notes}
     return render(request, 'StudyMaterial/Studyhome.html',context)
 
-
-
 def study_material_listing(request):
     try:
         study_material = Resource.objects.filter(status="Accepted").order_by("-timestamp")
@@ -46,7 +44,6 @@ def add_study_material(request):
             return render('StudyMaterial/addstudy.html', {'form': form})
     return render(request,'StudyMaterial/addstudy.html', {'form': form})
 
-
 # search notes
 def search_notes(request):
     title = request.GET.get('q')
@@ -59,3 +56,13 @@ def search_notes(request):
         return JsonResponse({"status":"success", "data":res, "notes_list":notes_list})
     else:
         return JsonResponse({"status":"fail"})
+
+
+# function to delete a note
+@login_required
+def delete_note(request, pk):
+    try:
+        Resource.objects.get(id = pk).delete()
+        return JsonResponse({'status':'success'})
+    except:
+        return JsonResponse({'status':'fail'})

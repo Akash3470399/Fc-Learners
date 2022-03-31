@@ -13,15 +13,17 @@ queryInput.onkeyup = function () {
         if (data["status"] == "success") {
           notes_list.innerHTML ="";
           data["notes_list"].forEach(note => {
-            let newli = `<li><a href="${base_url + note[1]}">${note[0]}</a></li>`;
+            let newli = `<a href="${base_url + note[1]}" target="_blank"><li>${
+              note[0]
+            }</li></a>`;
             notes_list.innerHTML += newli;
           });
-          searchWrapper.classList.add("active");
         }
         else{
             notes_list.innerHTML = "<li>No result found</li>";
         }
         });
+        searchWrapper.classList.add("active");
   }
   else{
       window.location.reload();
