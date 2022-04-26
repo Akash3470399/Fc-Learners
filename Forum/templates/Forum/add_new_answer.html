@@ -32,46 +32,13 @@
       id="formimg"
     />
     <form
-      action="{% url 'Blog:add_new_post' %}"
+      action="{% url 'Forum:add_answer' question_no%}"
       method="POST"
       class="form"
       id="content"
     >
       {% csrf_token %}
-      <p class="form-element">
-        <input
-          placeholder="Title"
-          type="text"
-          name="title"
-          maxlength="200"
-          required
-          id="id_title"
-          class="box"
-        />
-      </p>
 
-      <p class="form-element">
-        <input
-          type="text"
-          name="category"
-          maxlength="50"
-          required
-          id="id_category"
-          class="box"
-          placeholder="Category"
-        />
-      </p>
-
-      <p class="form-element">
-        <input
-          type="file"
-          name="thumbnail"
-          accept="image/*"
-          id="id_thumbnail"
-          class="box"
-          placeholder="Thumbnail"
-        />
-      </p>
 
       <p class="form-element">
         <textarea
@@ -79,12 +46,12 @@
           cols="40"
           rows="10"
           required=""
-          id="id_content"
+          id="id_answer_text"
           hidden
         ></textarea>
       </p>
         <textarea id="tinymce-textarea"></textarea>
-      <button class="submit-btn" onclick="submitForm()">Add Post</button>
+      <button class="submit-btn" onclick="submitForm()">Add Question</button>
     </form>
 
 
@@ -111,7 +78,7 @@
       let form = document.querySelector("form");
       function submitForm(e) {
         console.log(tinymce.activeEditor.getContent());
-        form.querySelector("#id_content").innerText = tinymce.activeEditor.getContent();
+        form.querySelector("#id_answer_text").innerText = tinymce.activeEditor.getContent();
         form.submit();
       }
     </script>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 class Question(models.Model):
     description = models.CharField(max_length=500, blank=False, null=False)
@@ -8,6 +9,10 @@ class Question(models.Model):
 
     def __str__(self) -> str:
         return self.description
+
+    def get_absolute_url(self):
+        return reverse("Forum:get_question", kwargs={"pk": self.pk})
+    
 
 class QuestionCategory(models.Model):
     category = models.CharField(max_length=100, null=True, blank=True)

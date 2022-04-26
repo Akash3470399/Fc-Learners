@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,30 +11,63 @@
 		/>
 		<title>Fc Learners-Blog</title>
 		<!-- Bootstrap CSS -->
-<!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
 
-    <!-- Font awesome icon -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-      crossorigin="anonymous"
-    />
-		<link rel="stylesheet" href="{% static 'Blog/css/BlogHome.css' %}" />
+		<link rel="stylesheet" href="BlogHomeModule.css" />
 	
 	</head>
 	<body>
 		<canvas class="background"></canvas>
-
-		<!-- ***** Header Area Start ***** -->
-		{% include 'Blog/header.html' %}
+		<header class="header-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<nav class="main-nav">
+							<!-- ***** Logo Start ***** -->
+							<a href="BlogHomeModule.html" class="logo">
+								<h4><span>FC</span>Learners</h4>
+							</a>
+							<!-- ***** Logo End ***** -->
+							<!-- ***** Menu Start ***** -->
+							<ul class="nav">
+								<li class="scroll-to-section"><a href="#top">Home</a></li>
+								<li class="scroll-to-section">
+									<a href="#about">Study Material</a>
+								</li>
+								<li class="scroll-to-section">
+									<a href="#services" class="active">Blog</a>
+								</li>
+								<li class="scroll-to-section">
+									<a href="#portfolio">Q&A Forum</a>
+								</li>
+								<li class="scroll-to-section"><a href="#blog">About Us</a></li>
+								<li class="scroll-to-section">
+									<a href="#contact" id="darkmode">
+										<img
+											src="BlogHomeModuleImages/moon.png"
+											alt=""
+											srcset=""
+											id="modeicon"
+										/>
+									</a>
+								</li>
+								<li class="scroll-to-section">
+									<div class="main-blue-button">
+										<a href="#contact">Login/Sign up</a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
 		<!-- ***** Header Area End ***** -->
 
 		<div class="main-banner" id="top">
@@ -58,14 +90,14 @@
 									</p>
 
 									<div class="main-blue-button">
-										<a href="{% url 'Blog:add_new_post' %}">Add new post</a>
+										<a href="#contact">Sign up</a>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="right-image">
 									<img
-										src="{% static 'Blog/assets/images/BlogHome/Blogging-pana.png' %}"
+										src="BlogHomeModuleImages/Blogging-pana.png"
 										alt="team meeting"
 									/>
 								</div>
@@ -75,81 +107,29 @@
 				</div>
 			</div>
 		</div>
-
-				<!-- main blog part -->
-		<div id="blog" class="our-blog section">
+		<!-- serachbar -->
+		<section class="text-dark p-5" id="searchbar">
 			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="section-heading">
-							<h2>
-								Check Out What Is <em>Trending</em> In Our Latest
-								<span>Blogs</span>
-							</h2>
-						</div>
+				<div class="d-md-flex justify-content-between align-items-center">
+					<div class="input-group news-input">
+						<input
+							type="text"
+							class="form-control"
+							placeholder="What are you searching for?"
+						/>
+						<button class="btn btn-dark btn-sm" type="button">Search</button>
 					</div>
-					<div class="col-lg-6">
-						<div class="top-dec">
-							<img src="{% static 'Blog/assets/images/BlogHome/3704081.png' %}" alt="" />
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					{% if letest_posts %}
-					<div class="col-lg-6 card-footer card-header">
-						<div class="left-image">
-							<a href="{% url 'Blog:blog_detail' letest_posts.0.id %}"
-								><img
-									src="{{ letest_posts.0.thumbnail.url }}"
-									alt="Workspace Desktop"
-							/></a>
-							<div class="info">
-								<div class="inner-content">
-									<ul>
-										<li><i class="fa fa-calendar"></i> {{ letest_posts.0.timestamp|date:"D d M y" }} </li>
-										<li><i class="fa fa-users"></i> {{ letest_posts.0.category }} </li>
-										<li><i class="fa fa-folder"></i> {{ letest_posts.0.user }}</li>
-									</ul>
-									<a href="{% url 'Blog:blog_detail' letest_posts.0.id %}"><h4>{{ letest_posts.0.title }}</h4></a>
-									<p>
-										 
-									</p>
-									<div class="main-blue-button">
-										<a href="{% url 'Blog:blog_list' %}">Discover More</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="right-list">
-							<ul>
-								{% for post in letest_posts|slice:"1:"  %}
-									<li class="card-footer card-header">
-										<div class="left-content align-self-center">
-											<span><i class="fa fa-calendar"></i> {{ post.timestamp|date:"D d M Y" }} </span>
-											<a href="{% url 'Blog:blog_detail' post.id %}"><h4>{{ post.title }}</h4></a>
-											<p>
-												by {{ post.user }}
-											</p>
-										</div>
-										<div class="right-image">
-											<a href="{% url 'Blog:blog_detail' post.id %}"
-												><img
-													src="{{ post.thumbnail.url }}"
-													alt=""
-											/></a>
-										</div>
-									</li>
-								{% endfor %}
-				
-							</ul>
-						</div>
-					</div>
-					{% endif %}
 				</div>
 			</div>
-		</div>
+		</section>
+
+		<!-- wave animation -->
+		<section>
+			<div class="wave wave1"></div>
+			<div class="wave wave2"></div>
+			<div class="wave wave3"></div>
+			<div class="wave wave4"></div>
+		</section>
 
 		<div id="about" class="about-us section">
 			<div class="container">
@@ -157,7 +137,7 @@
 					<div class="col-lg-4">
 						<div class="left-image wow fadeIn">
 							<img
-								src="{% static 'Blog/assets/images/BlogHome/Mind map-pana.png' %}"
+								src="BlogHomeModuleImages/Mind map-pana.png"
 								alt="person graphic"
 							/>
 						</div>
@@ -169,7 +149,7 @@
 									<div class="item">
 										<div class="icon">
 											<img
-												src="{% static 'Blog/assets/images/BlogHome/service-icon-01.png' %}"
+												src="BlogHomeModuleImages/service-icon-01.png"
 												alt="reporting"
 											/>
 										</div>
@@ -184,7 +164,7 @@
 								<div class="col-lg-6">
 									<div class="item">
 										<div class="icon">
-											<img src="{% static 'Blog/assets/images/BlogHome/service-icon-02.png' %}" alt="" />
+											<img src="BlogHomeModuleImages/service-icon-02.png" alt="" />
 										</div>
 										<div class="right-text">
 											<h4>Data Reporting</h4>
@@ -197,7 +177,7 @@
 								<div class="col-lg-6">
 									<div class="item">
 										<div class="icon">
-											<img src="{% static 'Blog/assets/images/BlogHome/service-icon-03.png' %}" alt="" />
+											<img src="BlogHomeModuleImages/service-icon-03.png" alt="" />
 										</div>
 										<div class="right-text">
 											<h4>Web Analytics</h4>
@@ -210,7 +190,7 @@
 								<div class="col-lg-6">
 									<div class="item">
 										<div class="icon">
-											<img src="{% static 'Blog/assets/images/BlogHome/service-icon-04.png' %}" alt="" />
+											<img src="BlogHomeModuleImages/service-icon-04.png" alt="" />
 										</div>
 										<div class="right-text">
 											<h4>Web Analytics</h4>
@@ -223,7 +203,7 @@
 								<div class="col-lg-6">
 									<div class="item">
 										<div class="icon">
-											<img src="{% static 'Blog/assets/images/BlogHome/service-icon-01.png' %}" alt="" />
+											<img src="BlogHomeModuleImages/service-icon-01.png" alt="" />
 										</div>
 										<div class="right-text">
 											<h4>Web Analytics</h4>
@@ -236,7 +216,7 @@
 								<div class="col-lg-6">
 									<div class="item">
 										<div class="icon">
-											<img src="{% static 'Blog/assets/images/BlogHome/service-icon-03.png' %}" alt="" />
+											<img src="BlogHomeModuleImages/service-icon-03.png" alt="" />
 										</div>
 										<div class="right-text">
 											<h4>SEO Suggestions</h4>
@@ -252,7 +232,109 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- main blog part -->
+		<div id="blog" class="our-blog section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="section-heading">
+							<h2>
+								Check Out What Is <em>Trending</em> In Our Latest
+								<span>Blogs</span>
+							</h2>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="top-dec">
+							<img src="assets/cleaned imgs/3704081.png" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="left-image">
+							<a href="#"
+								><img
+									src="BlogHomeModuleImages/pexels-fauxels-3184454.jpg"
+									alt="Workspace Desktop"
+							/></a>
+							<div class="info">
+								<div class="inner-content">
+									<ul>
+										<li><i class="fa fa-calendar"></i> 24 Mar 2021</li>
+										<li><i class="fa fa-users"></i> TemplateMo</li>
+										<li><i class="fa fa-folder"></i> Branding</li>
+									</ul>
+									<a href="#"><h4>SEO Agency &amp; Digital Marketing</h4></a>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur and sed doer ket
+										eismod tempor incididunt ut labore et dolore magna...
+									</p>
+									<div class="main-blue-button">
+										<a href="#">Discover More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="right-list">
+							<ul>
+								<li>
+									<div class="left-content align-self-center">
+										<span><i class="fa fa-calendar"></i> 18 Mar 2021</span>
+										<a href="#"><h4>New Websites &amp; Backlinks</h4></a>
+										<p>
+											Lorem ipsum dolor sit amsecteturii and sed doer ket
+											eismod...
+										</p>
+									</div>
+									<div class="right-image">
+										<a href="#"
+											><img
+												src="BlogHomeModuleImages/pexels-pavlo-luchkovski-337909.jpg"
+												alt=""
+										/></a>
+									</div>
+								</li>
+								<li>
+									<div class="left-content align-self-center">
+										<span><i class="fa fa-calendar"></i> 14 Mar 2021</span>
+										<a href="#"><h4>SEO Analysis &amp; Content Ideas</h4></a>
+										<p>
+											Lorem ipsum dolor sit amsecteturii and sed doer ket
+											eismod...
+										</p>
+									</div>
+									<div class="right-image">
+										<a href="#"
+											><img
+												src="BlogHomeModuleImages/pexels-pavlo-luchkovski-337909.jpg"
+												alt=""
+										/></a>
+									</div>
+								</li>
+								<li>
+									<div class="left-content align-self-center">
+										<span><i class="fa fa-calendar"></i> 06 Mar 2021</span>
+										<a href="#"><h4>SEO Tips &amp; Digital Marketing</h4></a>
+										<p>
+											Lorem ipsum dolor sit amsecteturii and sed doer ket
+											eismod...
+										</p>
+									</div>
+									<div class="right-image">
+										<a href="#"
+											><img src="BlogHomeModuleImages/pexels-fauxels-3184454.jpg" alt=""
+										/></a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- blog part2 winners category -->
 		<div id="portfolio" class="our-portfolio section">
@@ -272,29 +354,27 @@
 					</div>
 				</div>
 				<div class="row">
-					{% for winner in winners %}
-						<div class="col-lg-3 col-sm-6">
-							<a href="#">
-								<div
-									class="item wow bounceInUp"
-									data-wow-duration="1s"
-									data-wow-delay="0.3s"
-								>
-									<div class="hidden-content">
-										<h4>{{ winner.user }}</h4>
-										<p>{{ winner.title }}</p>
-									</div>
-									<div class="showed-content">
-										<img
-											src="{% static 'Blog/assets/images/BlogHome/458-removebg-preview.png' %}"
-											alt=""
-										/>
-									</div>
+					<div class="col-lg-3 col-sm-6">
+						<a href="#">
+							<div
+								class="item wow bounceInUp"
+								data-wow-duration="1s"
+								data-wow-delay="0.3s"
+							>
+								<div class="hidden-content">
+									<h4>Anuja Bhise</h4>
+									<p>Lorem ipsum dolor sit ameti ctetur aoi adipiscing eto.</p>
 								</div>
-							</a>
-						</div>
-					{% endfor %}
-					{% comment %} <div class="col-lg-3 col-sm-6">
+								<div class="showed-content">
+									<img
+										src="BlogHomeModuleImages/458-removebg-preview.png"
+										alt=""
+									/>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6">
 						<a href="#">
 							<div
 								class="item wow bounceInUp"
@@ -307,7 +387,7 @@
 								</div>
 								<div class="showed-content">
 									<img
-										src="{% static 'Blog/assets/images/BlogHome/458-removebg-preview.png' %}"
+										src="BlogHomeModuleImages/458-removebg-preview.png"
 										alt=""
 									/>
 								</div>
@@ -327,7 +407,7 @@
 								</div>
 								<div class="showed-content">
 									<img
-										src="{% static 'Blog/assets/images/BlogHome/458-removebg-preview.png' %}"
+										src="BlogHomeModuleImages/458-removebg-preview.png"
 										alt=""
 									/>
 								</div>
@@ -347,17 +427,13 @@
 								</div>
 								<div class="showed-content">
 									<img
-										src="{% static 'Blog/assets/images/BlogHome/458-removebg-preview.png' %}"
+										src="BlogHomeModuleImages/458-removebg-preview.png"
 										alt=""
 									/>
 								</div>
 							</div>
 						</a>
-					
-					
-					</div> {% endcomment %}
-
-
+					</div>
 				</div>
 			</div>
 		</div>
@@ -461,7 +537,62 @@
 		</div>
 
 		<!-- Footer Start -->
-		{% include 'Blog/footer.html' %}
+		<div class="footer">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-widget">
+							<h4 class="title">FC Learners</h4>
+							<br />
+							<div class="contact-info">
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. A
+								reiciendis odit totam?
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-widget">
+							<h4 class="title">Quick Links</h4>
+							<br />
+
+							<ul>
+								<li><a href="#" class="list">Posuere egestas</a></li>
+								<li><a href="#" class="list">Sollicitudin</a></li>
+								<li><a href="#" class="list">Luctus non</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-widget">
+							<h4 class="title">Get in Touch</h4>
+							<br />
+							<div class="contact-info">
+								<i class="fa fa-map-marker"></i>123 Shivajinagar, Pune , India
+
+								<i class="fa fa-envelope"></i>email@example.com
+								<br>
+								<i class="fa fa-phone"></i>+123-456-7890
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-widget">
+							<h4 class="title">Our Team</h4>
+							<br />
+							<div class="contact-info">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							</div>
+						</div>
+					</div>
+				</div>
+				<br />
+				<br />
+				<br />
+			</div>
+		</div>
 		<!-- Footer End -->
 
 		<!-- Footer Bottom Start -->
@@ -538,7 +669,16 @@
 			};
 		</script>
 		<!-- dark theme -->
-		<script src="{% static 'blog/js/themesLogic.js' %}"></script>
-		<script src="{% static 'Blog/js/searchScript.js' %}"></script>
+		<script>
+			var modeicon = document.getElementById("modeicon");
+			modeicon.onclick = function () {
+				document.body.classList.toggle("dark-theme");
+				if (document.body.classList.contains("dark-theme")) {
+					modeicon.src = "BlogHomeModuleImages/sun.png";
+				} else {
+					modeicon.src = "BlogHomeModuleImages/moon.png";
+				}
+			};
+		</script>
 	</body>
 </html>
