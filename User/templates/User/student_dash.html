@@ -162,8 +162,8 @@
                                                 {% elif note.status == "Review"%}
                                                     <td> <span class="status red"></span>{{ note.status }}</td> 
                                                 {% endif %}
-                                                <td><a href=""><span  class="las la-trash"></a></span> </td> 
-                                                <td><a href=""><span  class="las la-edit"></a></span> </td>                          
+                                                <td><a href="{% url 'StudyMaterial:delete_resource' note.id %}"><span  class="las la-trash"></a></span> </td> 
+                                                <td><a href="{% url 'StudyMaterial:update_resource' note.id %}"><span  class="las la-edit"></a></span> </td>                          
                                             </tr>
                                         {% endfor %}
                                     </tbody>

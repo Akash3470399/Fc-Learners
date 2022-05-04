@@ -4,6 +4,10 @@ from django.core.paginator import Paginator
 from django.template.loader import render_to_string
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView, DeleteView
+
+
 
 from StudyMaterial .models import Resource
 from User.models import CustomUser
@@ -66,3 +70,28 @@ def delete_note(request, pk):
         return JsonResponse({'status':'success'})
     except:
         return JsonResponse({'status':'fail'})
+
+
+class ResourceUpdateView(UpdateView):
+    model = Resource
+    form_class = ResourceForm
+    success_url = reverse_lazy("User:student_dash")
+    template_name = "StudyMaterial/update_resource.html"
+
+class ResourceDeleteView(DeleteView):
+    model = Resource
+    template_name = "StudyMaterial/delete_resource.html"
+    success_url = reverse_lazy("User:student_dash")
+
+
+def change_status(request):
+    pk = request.GET.get("id")
+    status = request.GET.get("status")
+
+    resource = Resource.objects.get(id = pk)
+    if status == 'accept':
+        resource.status = "Accepted"
+    else:
+        resource.status = "Review"
+    resource.save()
+    return JsonResponse({'status':"done"})

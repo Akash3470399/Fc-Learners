@@ -1,3 +1,5 @@
+from importlib import resources
+from importlib.resources import contents
 import json
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -85,10 +87,9 @@ def student_dash(request):
 def teacher_dash(request):
     if not request.user.is_authenticated:
         return redirect('User:register_or_login')
-    user=CustomUser.objects.get(id=request.user.id)
-    d={'user':user}
-    return render(request, 'User/teacher_dash.html',d)
-
+    resouces = Resource.objects.filter(status = "Pending")
+    contents = {'resources': resouces}
+    return render(request, 'User/teacher_dash.html', contents)
 
 
 # function to get paginated blog names
@@ -192,3 +193,7 @@ def activate(request, uidb64, token):
         return HttpResponse(f'Thank you for your email confirmation. Now you can login your account.<a href={reverse("User:register_or_login")}>Login</a>')  
     else:  
         return HttpResponse('Activation link is invalid!')
+
+
+def about_us(request):
+    return render(request, "User/about_us.html")

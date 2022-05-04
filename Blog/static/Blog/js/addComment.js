@@ -30,7 +30,7 @@ form.onsubmit = function (e) {
             
             if(data['status'] == "success")
             {
-                let cmt_count = document.querySelector("div.author-details > div > a:nth-child(2)");
+                let cmt_count = document.querySelector("#commets-count");
                 cmt_count.innerText = (Number(cmt_count.innerText) + 1);
                 comment = `
                         <li class="media">
@@ -90,3 +90,11 @@ function getComments(linkElement)
     })
 }
 
+
+function add_like(post_id){
+    alert(post_id);
+    url = base_url + "/add-like?post_id=" + post_id; 
+    fetch(url).then(res => res.json()).then(data => {
+        document.querySelector("#likes-count").innerText = Number(document.querySelector("#likes-count").innerText) + 1;
+    });
+}
