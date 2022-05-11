@@ -1,6 +1,7 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 from .models import Question 
 from .forms import QuestionForm, AnswerForm
@@ -14,6 +15,7 @@ def forum_home(request):
     context = {'questions':qustions}
     return render(request, "Forum/forum.html", context)
 
+@login_required
 def get_question(request, pk):
     question = Question.objects.get(pk = pk)
     try:
@@ -22,6 +24,7 @@ def get_question(request, pk):
         answers = None
     return render(request, "Forum/forum_single.html", {'question':question, 'answers':answers})
 
+@login_required
 def add_question(request):
     if request.method == 'POST':
         data = request.POST['content']
@@ -39,6 +42,7 @@ def add_question(request):
         return render(request, "Forum/add_new_question.html")
 
 
+@login_required
 def add_answer(request, pk):
     if request.method == "POST":
         data = request.POST['content']

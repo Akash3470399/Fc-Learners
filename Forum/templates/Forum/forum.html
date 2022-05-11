@@ -58,12 +58,12 @@
 									<a href="{% url 'StudyMaterial:study_home' %}">Study Material</a>
 								</li>
 								<li class="scroll-to-section">
-									<a href="{% url 'Blog:blog_home' %}" class="active">Blog</a>
+									<a href="{% url 'Blog:blog_home' %}" >Blog</a>
 								</li>
 								<li class="scroll-to-section">
-									<a href="{% url 'Forum:forum_home' %}">Q&A Forum</a>
+									<a href="{% url 'Forum:forum_home' %}" class="active">Q&A Forum</a>
 								</li>
-								<li class="scroll-to-section"><a href="">About Us</a></li>
+								<li class="scroll-to-section"><a href="{% url 'about_us' %}">About Us</a></li>
 								<li class="scroll-to-section">
 									<a id="darkmode">
 										<span class="las la-adjust" id="modeicon"></span>
@@ -97,9 +97,13 @@
 			<div class="hero-content">
 				<h1>Have a question in your mind???</h1>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi nihil
+
+					Have a doubt in mind, Fc learners is here to help you out.<br><br>
+					Get the answers immediately
+
+					{% comment %} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi nihil
 					eum culpa, quisquam dolores porro voluptate expedita illo doloribus
-					nulla. Corporis fugiat sed excepturi odio, odit nam officia sequi at.
+					nulla. Corporis fugiat sed excepturi odio, odit nam officia sequi at. {% endcomment %}
 				</p>
 				<div class="btn-container">
 					<a href="{% url 'Forum:add_question' %}" class="primary-btn btn">Ask a Question</a>
@@ -109,7 +113,7 @@
 				<img src="{% static 'Forum/img/Questions-bro.svg' %} " />
 			</div>
 		</section>
-		<div class="wrapper">
+		{% comment %} <div class="wrapper">
 			<!-- searchbar -->
 			<div class="search-input">
 				<a href="" target="_blank" hidden></a>
@@ -119,7 +123,7 @@
 				</div>
 				<div class="icon"><i class="fas fa-search"></i></div>
 			</div>
-		</div>
+		</div> {% endcomment %}
 		<!------ Section: Courses ------>
 		<section class="courses" id="courses">
 			<h2>Recent Questions</h2>

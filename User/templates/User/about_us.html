@@ -49,7 +49,7 @@
 								<li class="scroll-to-section">
 									<a href="{% url 'Forum:forum_home' %}">Q&A Forum</a>
 								</li>
-								<li class="scroll-to-section"><a href="{% url 'about_us' %}">About Us</a></li>
+								<li class="scroll-to-section"><a href="{% url 'about_us' %}" class="active">About Us</a></li>
 								<li class="scroll-to-section">
 									<a href="#contact" id="darkmode">
 										<img
@@ -61,9 +61,9 @@
 									</a>
 								</li>
 								<li class="scroll-to-section">
-									<div class="main-blue-button">
+									{% comment %} <div class="main-blue-button">
 										<a href="#contact">Login/Sign up</a>
-									</div>
+									</div> {% endcomment %}
 								</li>
 							</ul>
 						</nav>
@@ -115,7 +115,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="top-dec">
-							<img src="{% static 'User/images/about/sun.png' %}" alt="" />
+							{% comment %} <img src="{% static 'User/images/about/sun.png' %}" alt="" /> {% endcomment %}
 						</div>
 					</div>
 				</div>
@@ -126,8 +126,12 @@
 								<img class="mySlides" src="{% static 'User/images/about/image1.jpg' %}" />
 								<img class="mySlides" src="{% static 'User/images/about/image2.jpg' %}" />
 								<img class="mySlides" src="{% static 'User/images/about/image3.jpg' %}" />
+								<img class="mySlides" src="{% static 'User/images/about/image1.jpg' %}" />
+
 								<img class="mySlides" src="{% static 'User/images/about/image4.jpeg' %}" />
 								<img class="mySlides" src="{% static 'User/images/about/image5.jpg' %}" />
+								<img class="mySlides" src="{% static 'User/images/about/image1.jpg' %}" />
+
 								<img class="mySlides" src="{% static 'User/images/about/image6.jpg' %}" />
 							</a>
 							<div class="info">
@@ -162,7 +166,7 @@
 										<p>
 											Roll No:218806<br />
 											Batch :B1<br />
-											Email:bhagyashriatre08@gmail.com<br />
+											Email:bhagyashriatre@des.com<br />
 										</p>
 									</div>
 									<div class="right-image">
@@ -179,8 +183,7 @@
 										<p>
 											Roll No:218810<br />
 											Batch :B1<br />
-											Email:bhagatakash0123@gmail.com<br />
-											Role:Front End Design & Development
+											Email:akash.bhagat590@des.com<br />
 										</p>
 									</div>
 									<div class="right-image">
@@ -195,8 +198,7 @@
 										<p>
 											Roll No:218811<br />
 											Batch :B1<br />
-											Email:<br />
-											Role:Front End Design & Development
+											Email:anuja.bhise424@des.com<br />
 										</p>
 									</div>
 									<div class="right-image">
@@ -274,7 +276,7 @@
 		<!-- Footer End -->
 
 		<!-- Footer Bottom Start -->
-		<div class="footer-bottom">
+		{% comment %} <div class="footer-bottom">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 copyright">
@@ -291,7 +293,7 @@
 			<a href="#" class="back-to-top bg-warning"
 				><i class="fa fa-chevron-up"></i
 			></a>
-		</div>
+		</div> {% endcomment %}
 		<!-- Footer Bottom End -->
 
 		<!-- javascript starts -->
@@ -352,7 +354,7 @@
 			modeicon.onclick = function () {
 				document.body.classList.toggle("dark-theme");
 				if (document.body.classList.contains("dark-theme")) {
-					modeicon.src = "BlogHomeModuleImages/sun.png";
+					// modeicon.src = "BlogHomeModuleImages/sun.png";
 				} else {
 					modeicon.src = "about/moon.png";
 				}

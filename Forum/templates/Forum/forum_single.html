@@ -60,12 +60,12 @@
 									<a href="{% url 'StudyMaterial:study_home' %}">Study Material</a>
 								</li>
 								<li class="scroll-to-section">
-									<a href="{% url 'Blog:blog_home' %}" class="active">Blog</a>
+									<a href="{% url 'Blog:blog_home' %}" >Blog</a>
 								</li>
 								<li class="scroll-to-section">
-									<a href="{% url 'Forum:forum_home' %}">Q&A Forum</a>
+									<a href="{% url 'Forum:forum_home' %}" class="active">Q&A Forum</a>
 								</li>
-								<li class="scroll-to-section"><a href="#blog">About Us</a></li>
+								<li class="scroll-to-section"><a href="{% url 'about_us' %}">About Us</a></li>
 								<li class="scroll-to-section">
 									<a id="darkmode">
 										<span class="las la-adjust" id="modeicon"></span>
@@ -116,8 +116,11 @@
 							{{ answer.answer_text|safe }}							
 						</p>
 				</div>
+				<br>
+				<hr>
 			{% endfor %}					
 			</div>
+			<br>
 		{% endif %}
 		</section>
 		<script src="{% static 'Forum/js/themesLogic.js' %}"></script>
