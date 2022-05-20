@@ -187,15 +187,42 @@
 			</p>
 			
 			<div class="row">
+				{% if latest_notes %}
+			
+				{% for latest_note in latest_notes.all|slice:"0:3" %}
 				<div class="column">
-					<h3>Javascript</h3>
+					<h3>{{ latest_note.title }}</h3>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos facere
+						<!--Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos facere-->
+						{{ latest_note.description }}
 					</p>
 					<div class="courses-btn">
-						<button class="btn secondary-btn">Download</button>
+						<button class="btn secondary-btn"><a target="_blank" href="{{ latest_note.file.url }}"> Download</button>
 					</div>
+				
 				</div>
+				{% endfor %}
+				{% endif %}
+			</div>
+			<div class="row">
+				{% if latest_notes %}
+				{% for latest_note in latest_notes|slice:"3:6" %}
+				<div class="column">
+					<h3>{{ latest_note.title }}</h3>
+					<p>
+						<!--Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos facere-->
+						{{ latest_note.description }}
+					</p>
+					<div class="courses-btn">
+						<button class="btn secondary-btn"><a target="_blank" href="{{ latest_note.file.url }}"> Download</button>
+					</div>
+				
+				</div>
+				{% endfor %}
+				{% endif %}
+			</div>
+	
+				<!--
 				<div class="column">
 					<h3>Javascript</h3>
 					<p>Lorem ipsum dolor sit amet consectetur, adipisicing eli</p>
@@ -213,6 +240,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="column">
 					<h3>Java</h3>
@@ -241,7 +269,7 @@
 						<button class="btn secondary-btn">Download</button>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			
 		</section>
 		<!------ Section: Features ------>
