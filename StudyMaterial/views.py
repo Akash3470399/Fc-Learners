@@ -4,6 +4,10 @@ from django.core.paginator import Paginator
 from django.template.loader import render_to_string
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView, DeleteView
+
+
 
 from StudyMaterial .models import Resource
 from User.models import CustomUser
@@ -11,11 +15,13 @@ from .forms import ResourceForm
 # Create your views here.
  
 def index(request):
+<<<<<<< HEAD
     latest_notes = Resource.objects.filter(status='Accepted').order_by('-timestamp')[:6]
+=======
+    latest_notes = Resource.objects.order_by('-timestamp')
+>>>>>>> aa328a4932fe99b0dd8ef3a83a06658a8c66197f
     context = {'latest_notes':latest_notes}
     return render(request, 'StudyMaterial/Studyhome.html',context)
-
-
 
 def study_material_listing(request):
     try:
@@ -41,11 +47,10 @@ def add_study_material(request):
             newResouce = form.save(commit=False)
             newResouce.user = request.user
             newResouce.save()
-            return redirect("StudyMaterial:study_material_listing")
+            return redirect("StudyMaterial:study_home")
         else:
             return render('StudyMaterial/addstudy.html', {'form': form})
     return render(request,'StudyMaterial/addstudy.html', {'form': form})
-
 
 # search notes
 def search_notes(request):
@@ -54,7 +59,43 @@ def search_notes(request):
     if notes.count() > 9:
         notes = notes[:9]
     if notes:
+        notes_list = [[note.title, note.file.url] for note in notes]
         res = render_to_string("StudyMaterial/paginated_notes.html", {"notes":notes, "is_paginated":False})
-        return JsonResponse({"status":"success", "data":res})
+        return JsonResponse({"status":"success", "data":res, "notes_list":notes_list})
     else:
         return JsonResponse({"status":"fail"})
+
+
+# function to delete a note
+@login_required
+def delete_note(request, pk):
+    try:
+        Resource.objects.get(id = pk).delete()
+        return JsonResponse({'status':'success'})
+    except:
+        return JsonResponse({'status':'fail'})
+
+
+class ResourceUpdateView(UpdateView):
+    model = Resource
+    form_class = ResourceForm
+    success_url = reverse_lazy("User:student_dash")
+    template_name = "StudyMaterial/update_resource.html"
+
+class ResourceDeleteView(DeleteView):
+    model = Resource
+    template_name = "StudyMaterial/delete_resource.html"
+    success_url = reverse_lazy("User:student_dash")
+
+
+def change_status(request):
+    pk = request.GET.get("id")
+    status = request.GET.get("status")
+
+    resource = Resource.objects.get(id = pk)
+    if status == 'accept':
+        resource.status = "Accepted"
+    else:
+        resource.status = "Review"
+    resource.save()
+    return JsonResponse({'status':"done"})

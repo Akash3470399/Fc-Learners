@@ -40,54 +40,6 @@
 		{% include 'StudyMaterial/header.html' %}
 		<!-- ***** Header Area End ***** -->
 
-	<!--<header class="header-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<nav class="main-nav">
-							<!-- ***** Logo Start ***** -->
-						<!--	<a href="{% url 'Blog:blog_home' %}" class="logo">
-								<h4><span>FC</span>Learners</h4>
-							</a>-->
-							<!-- ***** Logo End ***** -->
-							<!-- ***** Menu Start ***** -->
-							<!--<ul class="nav">
-								<li class="scroll-to-section">
-									<a href="{% url 'Blog:blog_home' %}">Home</a>
-								</li>
-								<li class="scroll-to-section">
-									<a href="#about">Study Material</a>
-								</li>
-								<li class="scroll-to-section">
-									<a href="{% url 'Blog:blog_home' %}" class="active">Blog</a>
-								</li>
-								<li class="scroll-to-section">
-									<a href="#portfolio">Q&A Forum</a>
-								</li>
-								<li class="scroll-to-section"><a href="#blog">About Us</a></li>
-								<li class="scroll-to-section">
-									<a id="darkmode">
-										<span class="las la-adjust" id="modeicon"></span>
-										<!-- <img src="moon.png" alt="" srcset="" id="modeicon" /> -->
-							<!--	</a>
-								</li>
-								<li class="scroll-to-section">
-									<div class="main-blue-button">
-										<!--  {% if not request.user.is_authenticated %}-->
-										<!--<a href="{% url 'User:register_or_login' %}"
-											>Login/Sign up</a
-										>-->
-										<!-- {% else %}-->
-										<!-- <a href="{% url 'User:register_or_login' %}">{{ request.user.name }}</a>-->
-										<!-- {% endif %}-->
-								<!--	</div>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</header>-->
 		<!------ Section: Hero ------>
 		<section class="hero" id="home">
 			
@@ -102,8 +54,8 @@
 					also share, which increases the total body of knowledge.
 				</p>
 				<div class="btn-container">
-					<button class="primary-btn btn"><a href="{% url 'StudyMaterial:add_study' %}">Add Study Material</button>
-					<button class="secondary-btn btn"><a href="{% url 'StudyMaterial:study_material_listing' %}">Explore More</button>
+					<button class="primary-btn btn"><a href="{% url 'StudyMaterial:add_study' %}">Add Study Material</a></button>
+					<button class="secondary-btn btn"><a href="{% url 'StudyMaterial:study_material_listing' %}">Explore More</a></button>
 				</div>
 			</div>
 			<div class="hero-img">
@@ -169,7 +121,6 @@
 		<!-- searchbar -->
 		<div class="wrapper">
 			<div class="search-input">
-				<a href="" target="_blank" hidden></a>
 				<input type="text" placeholder="Type to search.." />
 				<div class="autocom-box">
 					<!-- here list are inserted from javascript -->
@@ -185,6 +136,7 @@
 				obcaecati.-->
 				You can download Study Material Shared by your teachers or classmates from here!
 			</p>
+<<<<<<< HEAD
 			
 			<div class="row">
 				{% if latest_notes %}
@@ -237,9 +189,37 @@
 					</p>
 					<div class="courses-btn">
 						<button class="btn secondary-btn">Download</button>
+=======
+				<div id="notes-list">
+				<div class="row">
+					{% for note in latest_notes|slice:":3" %}
+					<div class="column">
+						<h3>{{ note.subject }}</h3>
+						<p>
+							{{ note.description }}
+						</p>
+						<div class="courses-btn">
+							<a href="{{ note.file.url }}" target="_blank" class="btn secondary-btn">Download</a>
+						</div>
 					</div>
+					{% endfor %}
+				</div>
+				<div class="row">
+					{% for note in latest_notes|slice:"3:" %}
+					<div class="column my-4">
+						<h3>{{ note.subject }}</h3>
+						<p>
+							{{ note.description }}
+						</p>
+						<div class="courses-btn">
+							<a href="{{ note.file.url }}" target= "_blank" class="btn secondary-btn">Download</a>
+						</div>
+>>>>>>> aa328a4932fe99b0dd8ef3a83a06658a8c66197f
+					</div>
+					{% endfor %}
 				</div>
 			</div>
+<<<<<<< HEAD
 			
 			<div class="row">
 				<div class="column">
@@ -271,6 +251,8 @@
 				</div>
 			</div>-->
 			
+=======
+>>>>>>> aa328a4932fe99b0dd8ef3a83a06658a8c66197f
 		</section>
 		<!------ Section: Features ------>
 		<section class="features" id="features">
@@ -324,8 +306,8 @@
 		<!------ JS Script ------>
 		
 		<!-- dark theme -->
+		<script src="{% static 'StudyMaterial/js/searchNotesHome.js' %}"></script>
 		<script src="{% static 'StudyMaterial/js/themesLogic.js' %}"></script>
-		
 		<!-- used for responsiveness -->
 	<!--<script src="{% static 'blog/js/script.js' %}"></script>-->	
 		

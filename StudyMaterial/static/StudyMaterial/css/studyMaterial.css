@@ -235,6 +235,7 @@ section.hero {
 /*------ Section: Courses ------*/
 .courses .row {
   align-items: stretch;
+  margin-top: 15px;
 }
 .courses .column {
   box-shadow: 0 0.5rem 2.4rem 0.6rem rgba(0, 0, 0, 0.06);
@@ -393,6 +394,7 @@ section.hero {
 
 .search-input.active .autocom-box li{
   display: block;
+  cursor: pointer;
 }
 .autocom-box li:hover{
   background: #efefef;
