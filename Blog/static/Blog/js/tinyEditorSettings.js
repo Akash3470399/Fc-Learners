@@ -4,12 +4,12 @@ tinymce.init({
   height: 300,
   plugins: [
     "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-    "table emoticons template help",
+    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
+    "emoticons template help",
   ],
   toolbar:
     "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | " +
-    "bullist numlist outdent indent | link image | print preview media fullscreen | " +
+    "bullist numlist outdent indent | print preview media fullscreen | " +
     "forecolor backcolor emoticons | help",
   menu: {
     favs: {
