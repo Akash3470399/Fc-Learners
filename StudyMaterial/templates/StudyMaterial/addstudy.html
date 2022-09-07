@@ -35,7 +35,7 @@
 					{% csrf_token %}
 				<input type="text" class="field" placeholder=" Title" id="id_title" name="title" required>
 				<input type="text" class="field" placeholder="Subject" id="id_subject" name="subject" required>
-				<input type="file" id="id_files" class="field" name="file" required />
+				<input type="file" id="id_files" class="field" name="file" required accept="application/pdf"/>
 				<textarea placeholder="Description" class="field" id="id_description" name="description" required></textarea>
 					<input type="submit" class="btn" value="Upload">
 				</form>

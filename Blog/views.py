@@ -6,14 +6,10 @@ from django.views.generic import DetailView, CreateView, ListView
 from django.core.paginator import Paginator
 from django.template.loader import render_to_string
 import json
-
-from PIL import Image
-from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import time
+
 
 from Blog.models import Article, ArticleComment
-
 from .forms import ArticleForm, TinyEditorImagesForm
 
 # Create your views here.
@@ -128,6 +124,13 @@ def get_comments(request, article_no):
     except Exception as e:
         return JsonResponse({'status':'fail'})
     
+# add like
+def add_like(request):
+    pk = request.GET.get("post_id")
+    article = Article.objects.get(id = pk)
+    print(article.likes.add(request.user), article)
+    return JsonResponse({'status':"success"})
+
 
 @csrf_exempt
 def upload_image(request):

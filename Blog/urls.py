@@ -14,6 +14,7 @@ urlpatterns = [
     path("paginated_posts/", views.get_paginated_posts, name="get_paginated_post"),
     path('search/<str:q>/', views.search_blogs, name="blog_search"),
     path('add-comment/', views.add_comment, name="add_comment"),
+    path('add-like/', views.add_like, name="add_comment"),
     path('get-comments/<str:article_no>/', views.get_comments, name="get_comment"),
     path('upload-image/', views.upload_image, name="upload_image"),
 ]

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from pickle import TRUE
 import environ
 
 
@@ -82,14 +83,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+DATABASES = {
+    'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+'''
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql',
@@ -100,7 +101,7 @@ DATABASES = {
         'PORT':'5432'
     }
 }
-
+'''
 # to use custom User model
 AUTH_USER_MODEL = 'User.CustomUser'
 
@@ -152,3 +153,11 @@ MEDIA_ROOT = 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "User:register_or_login"
+
+# email
+
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_HOST_USER = 'fclearners@gmail.com'  
+EMAIL_HOST_PASSWORD = 'Fclearners@610'  
+EMAIL_PORT = 587  

@@ -58,8 +58,8 @@
 				<div class="author-details">
 					<p class="author-namee">{{ post.user }}</p>
 					<div class="like-comment-save">
-						<a href="" class="icon-btn text-decoration-none"><img src="{% static 'Blog/assets/images/BlogDetail/like.svg' %}" class="like" alt="" />{{post|get_likes}}</a>
-						<a href="#comment-box" class="icon-btn text-decoration-none"><img src="{% static 'Blog/assets/images/BlogDetail/comment.svg' %}" class="like" alt="" /> {{ post.articlecomment_set.all.count }}</a>
+						<a onclick="add_like({{post.id}})" class="icon-btn text-decoration-none"><img src="{% static 'Blog/assets/images/BlogDetail/like.svg' %}" class="like" alt="" /><span id="likes-count">{{post|get_likes}}</span></a>
+						<a class="icon-btn text-decoration-none"><img src="{% static 'Blog/assets/images/BlogDetail/comment.svg' %}" class="like" alt="" /> <span id="commets-count"> {{ post.articlecomment_set.all.count }} </span></a>
 					</div>
 				</div>
 

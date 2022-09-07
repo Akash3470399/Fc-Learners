@@ -6,7 +6,7 @@ class Resource(models.Model):
     choices = (
         ("Accepted", "Accepted"),
         ("Review", "Review"),
-        ("Pending", "pending")
+        ("Pending", "Pending")
     )
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     file = models.FileField(upload_to="Study_Material/files")
